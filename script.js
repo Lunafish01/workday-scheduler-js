@@ -21,38 +21,63 @@ $(document).ready(function () {
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
   //
-  $("#hour-4").each(function() {
-    var timeBlock = $(this).attr("id").split("-")[1];
+  // $(".time-block").each(function() {
+  //   var timeBlock = $(this).attr("id").split("-")[1];
 
-    if(date == timeBlock) {
+  //   if(date === timeBlock) {
+  //     $(this).addClass("present");
+  //     $(this).children(".description").addClass("present");
+  //   } else if(date < timeBlock) {
+  //     $(this).removeClass("past")
+  //     $(this).removeClass("present");
+  //     $(this).addClass("future");
+  //   } else if(date > timeBlock) {
+  //     $(this).removeClass("past")
+  //     $(this).removeClass("present");
+  //     $(this).addClass("past");
+  //   }
+  // });
 
-      $(this).addClass("present");
-      $(this).children("description").addClass("present");
-    } else if(date < timeBlock) {
+  // Get the current hour in 24-hour format
+  // Convert to a string
+  
+var currentHour = dayjs().hour().toString();
 
-      $(this).removeClass("present");
-      $(this).addClass("future");
-    } else if(date > timeBlock) {
+$(".time-block").each(function() {
+  var timeBlock = $(this).attr("id").split("-")[1];
 
-      $(this).removeClass("present");
-      $(this).addClass("past");
-    }
-  });
+  if (currentHour === timeBlock) {
+    $(this).addClass("present");
+  } else if (currentHour <= timeBlock) {
+    $(this).addClass("future");
+  } else {
+    $(this).addClass("past");
+  }
+});
+
 
 
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-    // $(".saveBtn").click(function (e){
-    //   e.preventDefault;
+    $(".saveBtn").click(function (e){
+      e.preventDefault();
 
-    //   var value = $(this).siblings(".description").val();
-    //   var time = $(this).parent().attr("id").split("-")[1];
+      var value = $(this).siblings(".description").val();
+      var time = $(this).parent().attr("id").split("-")[1];
 
-    //   localStorage.setItem(time, value);
-    // });
+      localStorage.setItem(time, value);
+    });
 
-    // $("#hour-9 .time-block").val(localStorage.getItem('text-center'));
+    for(var i = 0; i <= 12; i++){
+      var savedValue = localStorage.getItem(i.toString());
+      $("#hour-" + i + ".description").val(savedValue);
+    }
+
+    for(var i = 0; i <= 6; i++){
+      var savedValue = localStorage.getItem(i.toString());
+      $("#hour-" + i + ".description").val(savedValue);
+    }
 
 
   // TODO: Add code to display the current date in the header of the page.
