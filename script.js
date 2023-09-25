@@ -40,7 +40,7 @@ $(document).ready(function () {
 
   // Get the current hour in 24-hour format
   // Convert to a string
-  
+
 var currentHour = dayjs().hour().toString();
 
 $(".time-block").each(function() {
@@ -55,8 +55,6 @@ $(".time-block").each(function() {
   }
 });
 
-
-
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
@@ -69,16 +67,15 @@ $(".time-block").each(function() {
       localStorage.setItem(time, value);
     });
 
-    for(var i = 0; i <= 12; i++){
+    for(var i = 9; i <= 12; i++){
       var savedValue = localStorage.getItem(i.toString());
       $("#hour-" + i + ".description").val(savedValue);
     }
 
-    for(var i = 0; i <= 6; i++){
+    for(var i = 1; i <= 6; i++){
       var savedValue = localStorage.getItem(i.toString());
       $("#hour-" + i + ".description").val(savedValue);
     }
-
 
   // TODO: Add code to display the current date in the header of the page.
   var date = dayjs().format('dddd MMM DD, YYYY hh:mm:ss A');
