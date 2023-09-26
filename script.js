@@ -20,35 +20,15 @@ $(document).ready(function () {
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
-  //
-  // $(".time-block").each(function() {
-  //   var timeBlock = $(this).attr("id").split("-")[1];
-
-  //   if(date === timeBlock) {
-  //     $(this).addClass("present");
-  //     $(this).children(".description").addClass("present");
-  //   } else if(date < timeBlock) {
-  //     $(this).removeClass("past")
-  //     $(this).removeClass("present");
-  //     $(this).addClass("future");
-  //   } else if(date > timeBlock) {
-  //     $(this).removeClass("past")
-  //     $(this).removeClass("present");
-  //     $(this).addClass("past");
-  //   }
-  // });
-
-  // Get the current hour in 24-hour format
-  // Convert to a string
 
 var currentHour = dayjs().hour().toString();
 
 $(".time-block").each(function() {
-  var timeBlock = $(this).attr("id").split("-")[1];
+  var timeBlock = +$(this).attr("id").split("-")[1];
 
   if (currentHour === timeBlock) {
     $(this).addClass("present");
-  } else if (currentHour <= timeBlock) {
+  } else if (currentHour < timeBlock) {
     $(this).addClass("future");
   } else {
     $(this).addClass("past");
@@ -58,8 +38,9 @@ $(".time-block").each(function() {
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-    $(".saveBtn").click(function (e){
-      e.preventDefault();
+
+    $(".saveBtn").click(function (event){
+      event.preventDefault();
 
       var value = $(this).siblings(".description").val();
       var time = $(this).parent().attr("id").split("-")[1];
@@ -67,17 +48,23 @@ $(".time-block").each(function() {
       localStorage.setItem(time, value);
     });
 
-    for(var i = 9; i <= 12; i++){
+    for (var i = 0; i <= 10; i++) {
       var savedValue = localStorage.getItem(i.toString());
-      $("#hour-" + i + ".description").val(savedValue);
+      $("#hour-" + i + " .description").val(savedValue);
     }
 
-    for(var i = 1; i <= 6; i++){
-      var savedValue = localStorage.getItem(i.toString());
-      $("#hour-" + i + ".description").val(savedValue);
-    }
+    // for(var i = 9; i <= 12; i++){
+    //   var savedValue = localStorage.getItem(i.toString());
+    //   $("#hour-" + i + ".description").val(savedValue);
+    // }
+
+    // for(var i = 1; i <= 6; i++){
+    //   var savedValue = localStorage.getItem(i.toString());
+    //   $("#hour-" + i + ".description").val(savedValue);
+    // }
 
   // TODO: Add code to display the current date in the header of the page.
+
   var date = dayjs().format('dddd MMM DD, YYYY hh:mm:ss A');
   $('#currentDay').text(date);
 });
