@@ -22,7 +22,7 @@ $(".time-block").each(function() {
 });
 
 // selecting and targeting all button elements with the class selector of '.saveBtn'
-// adding event handler function to all button elements listening for a 'click' event
+// add event handler function to all button elements listening for a 'click' event
 // add preventDefault to keep browser from refreshing 
     $(".saveBtn").click(function (event){
       event.preventDefault();
