@@ -9,9 +9,8 @@ var currentHour = dayjs().hour().toString();
 $(".time-block").each(function() {
   var timeBlock = +$(this).attr("id").split("-")[1];
 
-// write a conditional statement
+// write a conditional statement to compare time to current time
 // need to add 'past', 'presnet' or 'futrue' to 'time-block' elements
-// running into conflict using 24-hour time, 
   if (currentHour === timeBlock) {
     $(this).addClass("present");
   } else if (currentHour < timeBlock) {
@@ -27,7 +26,7 @@ $(".time-block").each(function() {
     $(".saveBtn").click(function (event){
       event.preventDefault();
 
-// declaring variables for 'value' for 'time'
+// declare variables for 'value' and 'time'
 // store time and data input entered in textarea elements
       var value = $(this).siblings(".description").val();
 // use 'split' method to parse 'id' element and return second index object
@@ -37,13 +36,13 @@ $(".time-block").each(function() {
       localStorage.setItem(time, value);
     });
 
-// intiate for loop set saved data in local storage 
+// initiate for loop to set saved data from local storage 
     for (var i = 9; i <= 18; i++) {
       var savedValue = localStorage.getItem(i.toString());
       $("#hour-" + i + " .description").val(savedValue);
     }
 
-// added date and time to the top of the page using Dayjs library.
+// add date and time to the top of the page using Dayjs library.
   var date = dayjs().format('dddd MMM DD, YYYY hh:mm:ss A');
   $('#currentDay').text(date);
 });
