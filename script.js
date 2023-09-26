@@ -21,7 +21,8 @@ $(".time-block").each(function() {
   var timeBlock = +$(this).attr("id").split("-")[1];
 
 // write a conditional statement
-//need to add 'past', 'presnet' or 'futrue' to 'time-block' elements
+// need to add 'past', 'presnet' or 'futrue' to 'time-block' elements
+// running into conflict using 24-hour time, 
   if (currentHour === timeBlock) {
     $(this).addClass("present");
   } else if (currentHour < timeBlock) {
