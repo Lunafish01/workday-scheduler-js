@@ -31,4 +31,8 @@
 
 ## Link to Deployed Application
 
+[Work-Day-Scheduler Link](https://lunafish01.github.io/workday-scheduler-js/)
+
 ## Screen shot of Deployed Application
+
+![Alt text](<Screenshot 2023-09-25 at 11.35.25 PM.png>)
